@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+        <title>SERVIEXPRESS</title>
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <link href="{% static 'core/css/style.css'%}" rel="stylesheet">
+    <link href="{% static 'core/css/bootstrap.min.css' %}" rel="stylesheet">
+    {% block stylesheet %} {% endblock %}
+</head>
+<body>
+    {% block navbar %}
+        <script>
+            $(document).ready(function(){
+                set_nav_li("#inicio", "{% url 'home' %}", "{% static 'core/img/home.png' %}");
+                set_nav_li("#tienda", "{% url 'tienda' %}", "{% static 'core/img/shop.png' %}");
+                set_nav_li("#admsis", "{% url 'admin:index' %}", "{% static 'core/img/cohete.png' %}");
+                set_nav_li("#manpro", "{% url 'administrar_productos' 'ins' '-1' %}", "{% static 'core/img/man.png' %}");
+                set_nav_li("#regist", "{% url 'registrar_usuario' %}", "{% static 'core/img/registro.png' %}");
+                set_nav_li("#inises", "{% url 'iniciar_sesion' %}", "{% static 'core/img/login.png' %}");
+                set_nav_li("#cerses", "{% url 'cerrar_sesion' %}", "{% static 'core/img/login.png' %}");
+                set_nav_li("#perfil", "{% url 'perfil_usuario' %}", "{% static 'core/img/user.png' %}");
+                set_nav_li("#chpass", "{% url 'cambiar_password' %}", "{% static 'core/img/password.png' %}");
+                set_nav_li("#reportes", "{% url 'reportes' %}", "{% static 'core/img/reporte.png' %}");
+
+                function set_nav_li(id, url, img) {
+                    $(id).addClass('nav-item list-inline-item align-center nav_item_text');
+                    name = $(id).html();
+                    $(id).html('');
+                    $(id).append(`<a href="${url}"><img class="img_menu" src="${img}">${name}</a>`)
+                }
+            });
+        </script>
+        <nav id="navbar">
+            <div id="nav">
+                <ul class="list-inline">
+                    <!-- inicio menú para usuarios anónimos -->
+                    <li id="inicio">Inicio</li>    
+                    <li id="tienda">Servicios</li>
+                    <!-- fin menú para usuarios anónimos -->
+
+                    {% if user.is_authenticated and user.is_staff %}
+                        <li id="admsis">Administrar sistema</li>
+                        <li id="manpro">Mantenedor de servicios</li>
+                        <li id="reportes">Reportes</li>
+                    {% endif %}
+                    
+                    {% if not user.is_authenticated and not user.is_staff %}
+                        <li id="regist">Registrarme</li>
+                    {% endif %}
+                    
+                    {% if not user.is_authenticated %}
+                        <li id="inises">Iniciar sesión</li>
+                    {% endif %}
+
+                    {% if user.is_authenticated %}
+                        <li id="chpass">Cambiar contraseña</li>
+                        <li id="cerses">Cerrar sesión</li>
+                        <li id="perfil">{{ user.get_full_name }}</li>
+                    {% endif %}
+                    
+                </ul>
+            </div>                                 
+        </nav>
+        
+    {% endblock %}
+
+
+    
+
+    <div class="content container">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+
+
+
+
+</html>

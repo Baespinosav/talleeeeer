@@ -1,0 +1,74 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<link href="{% static 'core/css/forms.css'%}" rel="stylesheet">
+    <link href="{% static 'core/css/home.css'%}" rel="stylesheet">
+    <link href="{% static 'core/css/style.css'%}" rel="stylesheet">
+    <link href="{% static 'core/css/bootstrap.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<h1>Administrar Servicios</h1>
+{% if form %}
+<form method="POST" action="" enctype="multipart/form-data" id="formulario">
+    <div class="form-group" style="color:black !important;">
+        {% csrf_token %} {{ form.as_ul }}
+        {% if action == 'upd'  %}
+            <script>
+                $(document).ready(function() {
+                    $('#id_patente').attr('readonly', true);
+                });
+            </script>
+        {% endif %}
+
+    </div>
+    <input style="width: auto;" type="submit" class="btn btn-primary btnwidth" id="id_guardar" value="Guardar">
+    <a style="width: auto;" class="btn btn-success btnwidth" href="{% url 'administrar_productos' 'ins' -1 %}">Nuevo</a>
+    {% if id != '-1' %}
+    <a style="width: auto;" class="btn btn-danger btnwidth" href="{% url 'administrar_productos' 'del' id %}">Eliminar</a>
+    {% endif %}
+    <a style="width: auto;" class="btn btn-info btnwidth" href="{% url 'home' %}">Inicio</a>
+    {% if mesg %}
+    <div id="form_message" class="alert alert-danger" role="alert">{{ mesg }}</div>
+    {% endif %}
+</form>
+{% endif %}
+{% if list %}
+<table id="tabla_datos" class="texto-negro" style="color:black !important;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Servicio</th>
+            <th>Tipo de servicio</th>
+            <th>Imagen</th>
+            <th>Precio</th>
+            <th>Estado</th>
+            <th>Categoría</th>
+            <th class="titulo_boton">Editar</th>
+            <th class="titulo_boton">Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ve in list %}
+        <tr>
+            <td>{{ ve.patente }}</td>
+            <td>{{ ve.marca }}</td>
+            <td>{{ ve.modelo }}</td>
+            <td><img src="/media/{{ ve.imagen }}" class="mini_auto" alt=""></td>
+            <td>{{ ve.precio }}</td>
+            <td>{{ ve.estado }}</td>
+            <td>{{ ve.categoria }}</td>
+            <td><a href="{% url 'administrar_productos' 'upd' ve.patente %}" 
+                class="btn btn-primary btn-sm boton_chico"
+                style="width: auto;">Editar</a></td>
+            <td><a href="{% url 'administrar_productos' 'del' ve.patente %}" 
+                class="btn btn-danger btn-sm boton_chico"
+                style="width: auto;">Eliminar</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+<br>
+{% endblock content %}

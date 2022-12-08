@@ -1,0 +1,54 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<link href="{% static 'core/css/registrar_usuario.css'%}" rel="stylesheet">
+<link href="{% static 'core/css/style.css'%}" rel="stylesheet">
+<link href="{% static 'core/css/bootstrap.min.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+<div style="border-radius: 50%">
+    <div class="container-xl py-1 bg-dark hero-header mb-1">
+        <div class="container my-1 py-1">
+            <div class="container text-right">
+                <div class="container text-right">
+
+                    <h1 class="container text-center">Regístrate.</h1>
+                    <p class="container text-center">Para poder realizar una reserva de hora, tendrás que estar
+                        registrado.</p>
+                </div>
+                <div class="container text-right">
+                    <h1></h1>
+                    <div>
+                        <div class="content container text-right">
+                            <form method="POST" class="col-sm-2 col-md-6" action="" enctype="multipart/form-data"
+                                id="formulario">
+                                <div>
+                                    {% csrf_token %} {{ form.as_p }}
+                                    <div class="btn_guardar">
+                                        <button class="btn btn-primary" type="submit">Registrarme</button>
+                                    </div>
+                                    {% if mesg %}
+                                    <div id="form_message" class="alert alert-danger" role="alert">{{ mesg }}</div>
+                                    {% endif %}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<script href="{% static 'core/js/main.js' %}" rel="stylesheet"></script>
+{% endblock content %}

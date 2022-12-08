@@ -1,0 +1,67 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<link href="{% static 'core/css/iniciar_sesion.css'%}" rel="stylesheet">
+<link href="{% static 'core/css/style.css'%}" rel="stylesheet">
+<link href="{% static 'core/css/bootstrap.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="container-xl py-1 bg-dark hero-header mb-1">
+    <div class="container my-1 py-1">
+        <div class="container text-right">
+            <div class="container text-right">
+
+                <h1 class="container text-center">Inicia Sesión.</h1>
+                <p class="container text-center">Para reservar hora, tienes que
+                    tener iniciar su sesión.</p>
+            </div>
+            <div class="container text-right">
+                <h1></h1>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-6">
+                            <form method="POST" action="" enctype="multipart/form-data" id="formulario">
+                                <div class="centrar">
+                                    <div>
+                                        {% csrf_token %} {{ form.as_p }}
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <input type="submit" class="btn btn-primary" value="Ingresar">
+                                        {% if mesg %}
+                                        <div id="form_message" class="alert alert-danger" role="alert">{{ mesg }}</div>
+                                        {% endif %}
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+{% endblock content %}

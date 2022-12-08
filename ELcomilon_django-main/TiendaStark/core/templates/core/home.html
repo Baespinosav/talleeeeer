@@ -1,0 +1,119 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<link href="{% static 'core/css/home.css'%}" rel="stylesheet">
+<link href="{% static 'core/css/style.css'%}" rel="stylesheet">
+<link href="{% static 'core/css/bootstrap.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+
+
+{% block fonts}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+   href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap"
+   rel="stylesheet">
+
+<!-- Icon Font Stylesheet -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Libraries Stylesheet -->
+<link href="lib/animate/animate.min.css" rel="stylesheet">
+<link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+<link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+<!-- Customized Bootstrap Stylesheet -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="css/style.css" rel="stylesheet">
+{% endblock}
+
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+
+<div style="border-radius: 10%;">
+   <div class="container-xxl py-2 bg-dark mb-2">
+      <div class="container my-2 py-2">
+         <div class="row align-items-center g-5">
+            <div class="col-lg-6 text-center text-lg-start">
+               <h2 style="color:rgb(255, 255, 255);">Taller Mecánico:</h2>
+               <H1>SERVIEXPRESS</H1>
+               <h1 class="display-3 text-white animated slideInLeft">Tú taller automotriz de confianza<br></h1>
+               <p class="text-white animated slideInLeft mb-4 pb-2">Trae tú auto con el mejor taller automotriz de la
+                  zona con los mejores especialistas.</p>
+               <a href="{% url 'tienda' %}" ,
+                  class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Tienda</a>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="col-lg-6 text-center text-lg-end overflow-hidden">
+               <img class="img-fluid" src="{% static 'core/img/car.png'%}" alt="">
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+
+
+<!-- About Start -->
+<div class="three_box">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-4">
+            <div class="redondito">
+               <div class="box_text">
+                  <h3>DIAGNOSTICAMOS TÚ AUTO.</h3>
+                  <i><img class="caja1" src=" {% static 'core/img/thr.png'%}" alt="#" /></i>
+                  <p style="color:rgba(0, 0, 0, 0)">Se r ealizan cambios de aceite, coolant, líquido de freno y más.</p>
+                  <p style="color:black">Diagnosticamos tú auto y realizamos los servicios pertinentes.</p>
+                  <p style="color:rgba(0, 0, 0, 0)">Se realizan cambios de aceite, coolant, líquido de freno y más.</p>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="box_text">
+               <h3>CAMBIAMOS LOS LÍQUIDOS DE TÚ AUTO.</h3>
+               <i><img class="caja1" src="{% static 'core/img/thr1.png'%}" alt="#" /></i>
+               <p style="color:rgba(0, 0, 0, 0)">Se realizan cambios de aceite, coolant, líquido de freno y más.</p>
+               <p style="color:black">Se realizan cambios de aceite, coolant, líquido de freno y más.</p>
+               <p style="color:rgba(0, 0, 0, 0)">Se realizan cambios de aceite, coolant, líquido de freno y más.</p>
+
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="box_text">
+               <h3>NEUMÁTICOS</h3>
+               <i><img class="caja1" src="{% static 'core/img/thr2.png'%}" alt="#" /></i>
+               <p style="color:rgba(0, 0, 0, 0)">Se realizan cambios de aceite, coolant, líquido de freno y más.</p>
+               <p style="color:black">Realizamos cambios de tús neumáticas, alineación de tú vehículo y más.</p>
+               <p style="color:rgba(0, 0, 0, 0)">Se realizan cambios de aceite, coolant, líquido de freno y más.</p>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- About End -->
+
+
+{% endblock content %}

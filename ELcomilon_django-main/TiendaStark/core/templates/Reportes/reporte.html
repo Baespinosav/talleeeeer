@@ -1,0 +1,95 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block stylesheet %}
+    <link href="{% static 'core/css/forms.css'%}" rel="stylesheet">
+    <link href="{% static 'core/css/style.css'%}" rel="stylesheet">
+    <link href="{% static 'core/css/bootstrap.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Informe de Ventas</title>
+
+    <style>
+        body {
+            background-color: #f7f7f7;
+        }
+        @page{
+            size: "A4";
+            margin: 2.5cm 1.5cm 3.5cm 1.5cm;
+        }
+    </style>
+</head>
+<body>
+    <div class="">
+        <div class="">
+            <div class="">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <h2>Reserva de horas.</h2>
+            </div>
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <table class="table table-striped table-bordered table-sm table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">Número de reserva</th>
+                            <th scope="col">Cliente</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Monto</th>
+                            <th scope="col">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for venta in ventas %}
+                        
+                        <tr>
+                            <td>{{ venta.orden_compra }}</td>
+                            <td>{{ venta.nombre }} {{ venta.apellido }}</td>
+                            <td>{{ venta.correo }}</td>
+                            <td>{{ ve.estado }}</td>
+                            <td>{{ venta.monto }}</td>
+                            <td>{{ venta.fecha_compra }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-10 col-lg-8">
+        </div>
+        <div class="col-sm-12 col-md-10 col-lg-8">
+        </div>
+        <div class="col-sm-12 col-md-10 col-lg-8">
+        <form enctype="multipart/form-data" action="{% url 'home' %}" method="POST">
+            {% csrf_token %}
+            <div class="row justify-content-around my-1">
+                <div class="col-sm-12 text-center">
+                    <button type="submit" class="btn btn-dark btn-lg font-weight-bold">
+                        Volver al inicio.
+                    </button>
+                    <input type="button" class="btn btn-dark btn-lg font-weight-bold" value="Imprimir esta página." onclick="window.print()">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+{% endblock content %}
